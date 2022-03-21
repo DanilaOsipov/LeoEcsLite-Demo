@@ -1,5 +1,17 @@
 {
   "dependencies": {
+    "com.leopotam.ecslite": {
+      "version": "file:F:/Projects/ECS/ESC Practise/ESC Practise/Library/PackageCache/com.leopotam.ecslite@df885a4994",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
+    "com.leopotam.ecslite.di": {
+      "version": "file:F:/Projects/ECS/ESC Practise/ESC Practise/Library/PackageCache/com.leopotam.ecslite.di@b82ce2044e",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.unity.collab-proxy": {
       "version": "1.15.13",
       "depth": 0,
@@ -90,6 +102,12 @@
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
       }
+    },
+    "com.voody.unileo.lite": {
+      "version": "file:F:/Projects/ECS/ESC Practise/ESC Practise/Library/PackageCache/com.voody.unileo.lite@640e5a72ee",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
