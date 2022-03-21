@@ -5,7 +5,7 @@ using Services;
 
 namespace Systems
 {
-    public class PlayerInputRunSystem : IEcsRunSystem
+    public class PlayerInputUpdateSystem : IEcsRunSystem
     {
         private readonly EcsCustomInject<IInputService> _inputService;
         

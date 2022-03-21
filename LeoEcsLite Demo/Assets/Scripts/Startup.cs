@@ -19,7 +19,9 @@ public class Startup : MonoBehaviour
         initSystems.Init();
 
         _updateSystems = new EcsSystems(ecsWorld)
-            .Add(new PlayerInputRunSystem())
+            .Add(new PlayerInputUpdateSystem())
+            .Add(new PointAndClickMovementCheckSystem())
+            .Inject(new PhysicsService())
             .Inject(new InputService());
         _updateSystems.Init();
     }
