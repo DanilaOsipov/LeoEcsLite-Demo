@@ -1,0 +1,7 @@
+﻿public enum ButtonStatus
+{
+    None,
+    Down,
+    Held,
+    Up
+}
