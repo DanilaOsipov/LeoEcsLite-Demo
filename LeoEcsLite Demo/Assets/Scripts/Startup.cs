@@ -1,4 +1,3 @@
-using System;
 using Systems;
 using Events;
 using Leopotam.EcsLite;
@@ -32,6 +31,9 @@ public class Startup : MonoBehaviour
         _fixedUpdateSystems = new EcsSystems(ecsWorld)
             .DelHere<PlayerGroundHitEvent>()
             .Add(new PlayerGroundCheckSystem())
+            .Add(new PlayerDoorOperatorCheckSystem())
+            .Add(new DoorOperatorsWorkingSystem())
+            .Add(new DoorsOperatingSystem())
             .Inject(new PhysicsService());
         _fixedUpdateSystems.Init();
     }
