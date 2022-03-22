@@ -27,10 +27,6 @@ namespace Systems
         {
             if (!_physicsService.Value.CastRay(playerComponent.PlayerTransform.position, Vector3.down,
                 out var hitInfo)) return;
-            foreach (var i in ecsWorld.Filter<PlayerGroundHitEvent>().End())
-            {
-                Debug.Log(i);
-            }
             var playerGroundHitEventPool = ecsWorld.GetPool<PlayerGroundHitEvent>();
             var entity = ecsWorld.NewEntity();
             playerGroundHitEventPool.Add(entity);
