@@ -12,6 +12,13 @@
       "source": "local",
       "dependencies": {}
     },
+    "com.leopotam.ecslite.extendedsystems": {
+      "version": "https://github.com/snorluxe/ecslite-extendedsystems.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "6f914d9a723a99338af11b03961694adc4674311"
+    },
     "com.unity.collab-proxy": {
       "version": "1.15.13",
       "depth": 0,
