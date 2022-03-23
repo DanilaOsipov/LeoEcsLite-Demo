@@ -1,12 +1,14 @@
 ﻿using Components;
+using Events;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using Other;
 using Services;
 using UnityEngine;
 
 namespace Systems
 {
-    public class PointAndClickMovementCheckSystem : IEcsRunSystem
+    public class PointAndClickMovementStartCheckSystem : IEcsRunSystem
     {
         private readonly EcsCustomInject<IPhysicsService> _physicsService;
         
@@ -40,7 +42,14 @@ namespace Systems
                 if (!_physicsService.Value.CastRayFromScreenPoint(mousePosition, out var hitInfo)) continue;
                 if (hitInfo.transform.gameObject.layer != LayerMask.NameToLayer(Constants.WALKABLE_LAYER)) continue;
                 pointAndClickMovementComponent.NavMeshAgent.SetDestination(hitInfo.point);
+                SetStartMovingEvent(ecsWorld, entity);
             }
+        }
+
+        private void SetStartMovingEvent(EcsWorld ecsWorld, int entity)
+        {
+            var playerStartMovingEventPool = ecsWorld.GetPool<PlayerStartMovingEvent>();
+            playerStartMovingEventPool.Add(entity);
         }
     }
 }

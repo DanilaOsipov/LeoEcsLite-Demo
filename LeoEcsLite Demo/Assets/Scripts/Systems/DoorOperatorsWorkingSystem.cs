@@ -1,5 +1,6 @@
 ﻿using Components;
 using Leopotam.EcsLite;
+using Other;
 using UnityEngine;
 
 namespace Systems
