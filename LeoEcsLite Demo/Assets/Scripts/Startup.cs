@@ -15,22 +15,35 @@ public class Startup : MonoBehaviour
     private void Awake()
     {
         var ecsWorld = new EcsWorld();
+        SetInitSystems(ecsWorld);
+        SetUpdateSystems(ecsWorld);
+        SetFixedUpdateSystems(ecsWorld);
+    }
 
+    private static void SetInitSystems(EcsWorld ecsWorld)
+    {
         var initSystems = new EcsSystems(ecsWorld)
             .ConvertScene()
             .Add(new PlayerInputInitSystem());
         initSystems.Init();
+    }
 
+    private void SetUpdateSystems(EcsWorld ecsWorld)
+    {
         _updateSystems = new EcsSystems(ecsWorld)
             .DelHere<PlayerStartMovingEvent>()
             .DelHere<PlayerFinishMovingEvent>()
             .Add(new PlayerInputUpdateSystem())
             .Add(new PointAndClickMovementStartCheckSystem())
             .Add(new PointAndClickMovementFinishCheckSystem())
+            .Add(new PlayerAnimationUpdateSystem())
             .Inject(new PhysicsService())
             .Inject(new InputService());
         _updateSystems.Init();
+    }
 
+    private void SetFixedUpdateSystems(EcsWorld ecsWorld)
+    {
         _fixedUpdateSystems = new EcsSystems(ecsWorld)
             .DelHere<PlayerGroundHitEvent>()
             .Add(new PlayerGroundCheckSystem())
