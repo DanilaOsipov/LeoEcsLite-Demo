@@ -7,5 +7,6 @@ namespace Components
     public struct PointAndClickMovementEndMarkerComponent
     {
         public GameObject MarkerGameObject;
+        public ParticleSystem MarkerShowParticleSystem;
     }
 }

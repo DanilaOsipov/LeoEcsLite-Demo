@@ -26,8 +26,10 @@ namespace Systems
                 {
                     ref var endMarkerComponent = ref endMarkerComponentPool.Get(endMarkerEntity);
                     endMarkerComponent.MarkerGameObject.transform.position =
-                        pointAndClickComponentPool.Get(pointAndClickEntity).NavMeshAgent.destination; 
+                        pointAndClickComponentPool.Get(pointAndClickEntity).NavMeshAgent.destination;
+                    endMarkerComponent.MarkerShowParticleSystem.Clear();
                     endMarkerComponent.MarkerGameObject.SetActive(true);
+                    endMarkerComponent.MarkerShowParticleSystem.Play(true);
                 }
             }
         }
