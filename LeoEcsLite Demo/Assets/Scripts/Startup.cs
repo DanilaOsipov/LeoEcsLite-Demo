@@ -20,11 +20,12 @@ public class Startup : MonoBehaviour
         SetFixedUpdateSystems(ecsWorld);
     }
 
-    private static void SetInitSystems(EcsWorld ecsWorld)
+    private void SetInitSystems(EcsWorld ecsWorld)
     {
         var initSystems = new EcsSystems(ecsWorld)
             .ConvertScene()
-            .Add(new PlayerInputInitSystem());
+            .Add(new PlayerInputInitSystem())
+            .Add(new PointAndClickMovementEndMarkerInitSystem());
         initSystems.Init();
     }
 
@@ -37,6 +38,7 @@ public class Startup : MonoBehaviour
             .Add(new PointAndClickMovementStartCheckSystem())
             .Add(new PointAndClickMovementFinishCheckSystem())
             .Add(new PlayerAnimationUpdateSystem())
+            .Add(new PointAndClickMovementEndMarkerUpdateSystem())
             .Inject(new PhysicsService())
             .Inject(new InputService());
         _updateSystems.Init();
