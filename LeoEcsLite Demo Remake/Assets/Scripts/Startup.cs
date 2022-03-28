@@ -1,4 +1,5 @@
 using Systems;
+using Components;
 using Events;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
@@ -48,6 +49,8 @@ public class Startup : MonoBehaviour
     {
         _fixedUpdateSystems = new EcsSystems(ecsWorld)
             .DelHere<PlayerGroundHitEvent>()
+            .DelHere<MouseHitComponent>()
+            .Add(new MousePositionCheckSystem())
             .Add(new PlayerGroundCheckSystem())
             .Add(new PlayerDoorOperatorCheckSystem())
             .Add(new DoorOperatorsWorkingSystem())
