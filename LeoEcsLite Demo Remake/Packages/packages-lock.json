@@ -14,6 +14,13 @@
       "dependencies": {},
       "hash": "2a47fbf2f7edc69777d201ce2c9310ef723aae9a"
     },
+    "com.leopotam.ecslite.extendedsystems": {
+      "version": "https://github.com/Leopotam/ecslite-extendedsystems.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "645d4f27b12020630d4f1e252cb27deec04d2659"
+    },
     "com.unity.collab-proxy": {
       "version": "1.15.13",
       "depth": 0,
