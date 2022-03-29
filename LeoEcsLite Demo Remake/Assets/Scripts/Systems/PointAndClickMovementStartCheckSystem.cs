@@ -1,16 +1,12 @@
 ﻿using Components;
 using Events;
 using Leopotam.EcsLite;
-using Leopotam.EcsLite.Di;
 using Other;
-using Services;
 
 namespace Systems
 {
     public class PointAndClickMovementStartCheckSystem : IEcsRunSystem
     {
-        private readonly EcsCustomInject<IPhysicsService> _physicsService;
-        
         public void Run(EcsSystems systems) => CheckPlayerInput(systems.GetWorld());
 
         private void CheckPlayerInput(EcsWorld ecsWorld)
