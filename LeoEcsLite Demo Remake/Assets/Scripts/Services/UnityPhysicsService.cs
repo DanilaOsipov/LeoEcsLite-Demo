@@ -22,7 +22,7 @@ namespace Services
         public bool CastRay(IVector origin, IVector direction, out RaycastHitInfo raycastHitInfo)
         {
             raycastHitInfo = default;
-            if (Physics.Raycast(((UnityVector)origin).Value, ((UnityVector)direction).Value, 
+            if (!Physics.Raycast(((UnityVector)origin).Value, ((UnityVector)direction).Value, 
                 out var hitInfo)) return false;
             var hitTransform = hitInfo.transform;
             raycastHitInfo.Position = new UnityVector(hitTransform.position); 
