@@ -4,7 +4,6 @@ using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Other;
 using Services;
-using UnityEngine;
 
 namespace Systems
 {
@@ -12,44 +11,36 @@ namespace Systems
     {
         private readonly EcsCustomInject<IPhysicsService> _physicsService;
         
-        public void Run(EcsSystems systems)
+        public void Run(EcsSystems systems) => CheckPlayerInput(systems.GetWorld());
+
+        private void CheckPlayerInput(EcsWorld ecsWorld)
         {
-            var ecsWorld = systems.GetWorld();
-            var filter = ecsWorld.Filter<PlayerInputComponent>().End();
             var playerInputComponentPool = ecsWorld.GetPool<PlayerInputComponent>();
-            foreach (var entity in filter)
-            {
-                var playerInputComponent = playerInputComponentPool.Get(entity);
-                CheckMouseState(playerInputComponent, ecsWorld);
-            }
+            foreach (var entity in ecsWorld.Filter<PlayerInputComponent>().End())
+                CheckMouseState(playerInputComponentPool.Get(entity), ecsWorld);
         }
 
         private void CheckMouseState(PlayerInputComponent playerInputComponent, EcsWorld ecsWorld)
         {
-            var isLeftMouseButtonDown = playerInputComponent.LeftMouseButtonStatus == ButtonStatus.Down;
-            if (!isLeftMouseButtonDown) return;
-            CheckMousePosition(playerInputComponent, ecsWorld);
+            if (playerInputComponent.LeftMouseButtonStatus != ButtonStatus.Down) return;
+            CheckMousePosition(ecsWorld);
         }
 
-        private void CheckMousePosition(PlayerInputComponent playerInputComponent, EcsWorld ecsWorld)
+        private void CheckMousePosition(EcsWorld ecsWorld)
         {
-            var filter = ecsWorld.Filter<PointAndClickMovementComponent>().End();
-            var pointAndClickMovementComponentPool = ecsWorld.GetPool<PointAndClickMovementComponent>();
-            foreach (var entity in filter)
+            var mouseHitComponentPool = ecsWorld.GetPool<MouseHitComponent>();
+            var movementComponentPool = ecsWorld.GetPool<PointAndClickMovementComponent>();
+            foreach (var mouseHitEntity in ecsWorld.Filter<MouseHitComponent>().End())
             {
-                var mousePosition = playerInputComponent.MousePosition;
-                var pointAndClickMovementComponent = pointAndClickMovementComponentPool.Get(entity);
-                if (!_physicsService.Value.CastRayFromScreenPoint(mousePosition, out var hitInfo)) continue;
-                if (hitInfo.transform.gameObject.layer != LayerMask.NameToLayer(Constants.WALKABLE_LAYER)) continue;
-                pointAndClickMovementComponent.NavMeshAgent.SetDestination(hitInfo.point);
-                SetStartMovingEvent(ecsWorld, entity);
+                var hitInfo = mouseHitComponentPool.Get(mouseHitEntity).HitInfo;
+                if (hitInfo.LayerName != Constants.WALKABLE_LAYER) continue;
+                foreach (var movementEntity in ecsWorld.Filter<PointAndClickMovementComponent>().End())
+                {
+                    ref var movementComponent = ref movementComponentPool.Get(movementEntity);
+                    movementComponent.Destination = hitInfo.Position; 
+                    ecsWorld.GetPool<PlayerStartMovingEvent>().Add(movementEntity);
+                }
             }
-        }
-
-        private void SetStartMovingEvent(EcsWorld ecsWorld, int entity)
-        {
-            var playerStartMovingEventPool = ecsWorld.GetPool<PlayerStartMovingEvent>();
-            playerStartMovingEventPool.Add(entity);
         }
     }
 }

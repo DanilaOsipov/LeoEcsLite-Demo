@@ -40,8 +40,8 @@ public class Startup : MonoBehaviour
             .Add(new PointAndClickMovementFinishCheckSystem())
             .Add(new PlayerAnimationUpdateSystem())
             .Add(new PointAndClickMovementEndMarkerUpdateSystem())
-            .Inject(new PhysicsService())
-            .Inject(new InputService());
+            .Inject(new UnityPhysicsService())
+            .Inject(new UnityInputService());
         _updateSystems.Init();
     }
 
@@ -55,7 +55,7 @@ public class Startup : MonoBehaviour
             .Add(new PlayerDoorOperatorCheckSystem())
             .Add(new DoorOperatorsWorkingSystem())
             .Add(new DoorsOperatingSystem())
-            .Inject(new PhysicsService());
+            .Inject(new UnityPhysicsService());
         _fixedUpdateSystems.Init();
     }
 

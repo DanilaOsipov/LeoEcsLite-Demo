@@ -1,9 +1,7 @@
-﻿using UnityEngine;
-
-namespace Components
+﻿namespace Components
 {
     public struct MouseHitComponent
     {
-        public RaycastHit HitInfo;
+        public RaycastHitInfo HitInfo;
     }
 }

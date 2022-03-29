@@ -1,9 +1,7 @@
 ﻿using Components;
-using Events;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Services;
-using UnityEngine;
 
 namespace Systems
 {
@@ -25,13 +23,13 @@ namespace Systems
 
         private void CheckGround(PlayerComponent playerComponent, EcsWorld ecsWorld)
         {
-            if (!_physicsService.Value.CastRay(playerComponent.PlayerTransform.position, Vector3.down,
-                out var hitInfo)) return;
-            var playerGroundHitEventPool = ecsWorld.GetPool<PlayerGroundHitEvent>();
-            var entity = ecsWorld.NewEntity();
-            playerGroundHitEventPool.Add(entity);
-            ref var playerGroundHitEvent = ref playerGroundHitEventPool.Get(entity);
-            playerGroundHitEvent.HitInfo = hitInfo;
+            // if (!_physicsService.Value.CastRay(playerComponent.PlayerTransform.position, Vector3.down,
+            //     out var hitInfo, out TODO)) return;
+            // var playerGroundHitEventPool = ecsWorld.GetPool<PlayerGroundHitEvent>();
+            // var entity = ecsWorld.NewEntity();
+            // playerGroundHitEventPool.Add(entity);
+            // ref var playerGroundHitEvent = ref playerGroundHitEventPool.Get(entity);
+            // playerGroundHitEvent.HitInfo = hitInfo;
         }
     }
 }

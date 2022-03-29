@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Services
 {
-    public class InputService : IInputService
+    public class UnityInputService : IInputService
     {
         public ButtonStatus LeftMouseButtonStatus
         {
@@ -16,6 +16,6 @@ namespace Services
             }
         }
 
-        public Vector3 MousePosition => Input.mousePosition;
+        public IVector MousePosition => new UnityVector(Input.mousePosition);
     }
 }

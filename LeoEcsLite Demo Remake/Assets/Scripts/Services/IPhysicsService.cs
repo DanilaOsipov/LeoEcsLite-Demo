@@ -1,13 +1,12 @@
-﻿using UnityEngine;
+﻿using Components;
+using Other;
 
 namespace Services
 {
     public interface IPhysicsService
     {
-        bool CastRayFromScreenPoint(Vector3 position, out RaycastHit hitInfo,
-            float maxDistance = Mathf.Infinity, int layerMask = Physics.DefaultRaycastLayers);
+        bool CastRayFromScreenPoint(IVector position, out RaycastHitInfo hitInfo);
 
-        bool CastRay(Vector3 origin, Vector3 direction, out RaycastHit hitInfo,
-            float maxDistance = Mathf.Infinity, int layerMask = Physics.DefaultRaycastLayers);
+        bool CastRay(IVector origin, IVector direction, out RaycastHitInfo hitInfo);
     }
 }
