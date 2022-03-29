@@ -1,4 +1,5 @@
 using Systems;
+using Systems.PointAndClickMovement;
 using Components;
 using Events;
 using Leopotam.EcsLite;
@@ -36,8 +37,6 @@ public class Startup : MonoBehaviour
             .DelHere<PlayerStartMovingEvent>()
             .DelHere<PlayerFinishMovingEvent>()
             .Add(new PlayerInputUpdateSystem())
-            .Add(new PointAndClickMovementStartCheckSystem())
-            .Add(new PointAndClickMovementFinishCheckSystem())
             // .Add(new PlayerAnimationUpdateSystem())
             // .Add(new PointAndClickMovementEndMarkerUpdateSystem())
             .Inject(new UnityInputService());
@@ -50,10 +49,14 @@ public class Startup : MonoBehaviour
             .DelHere<PlayerGroundHitEvent>()
             .DelHere<MouseHitComponent>()
             .Add(new MousePositionCheckSystem())
+            .Add(new PointAndClickMovementStartCheckSystem())
+            .Add(new PointAndClickMovementUpdateSystem())
+            .Add(new PointAndClickMovementFinishCheckSystem())
             .Add(new PlayerGroundCheckSystem())
             .Add(new PlayerDoorOperatorCheckSystem())
             .Add(new DoorOperatorsWorkingSystem())
             .Add(new DoorsOperatingSystem())
+            .Inject(new UnityTimeService())
             .Inject(new UnityPhysicsService());
         _fixedUpdateSystems.Init();
     }

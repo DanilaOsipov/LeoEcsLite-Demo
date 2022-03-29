@@ -9,6 +9,7 @@ namespace Components
     {
         public IVector Destination;
         public IVector AgentPosition;
+        public IVector Direction;
         public float Speed;
         public NavMeshAgent NavMeshAgent;
     }

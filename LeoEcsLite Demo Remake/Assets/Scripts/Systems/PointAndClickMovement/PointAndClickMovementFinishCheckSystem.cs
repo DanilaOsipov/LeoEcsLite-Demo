@@ -2,7 +2,7 @@
 using Events;
 using Leopotam.EcsLite;
 
-namespace Systems
+namespace Systems.PointAndClickMovement
 {
     public class PointAndClickMovementFinishCheckSystem : IEcsRunSystem
     {

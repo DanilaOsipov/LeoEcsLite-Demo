@@ -1,7 +1,7 @@
 ﻿using Components;
 using Leopotam.EcsLite;
 
-namespace Systems
+namespace Systems.PointAndClickMovement
 {
     public class PointAndClickMovementEndMarkerInitSystem : IEcsInitSystem
     {
