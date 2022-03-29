@@ -7,5 +7,7 @@ namespace Other
         public Vector3 Value;
         
         public UnityVector(Vector3 value) => Value = value;
+        
+        public bool IsApproximate(IVector to) => ((UnityVector)to).Value == Value;
     }
 }

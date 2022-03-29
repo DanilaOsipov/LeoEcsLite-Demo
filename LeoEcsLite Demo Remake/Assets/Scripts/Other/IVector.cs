@@ -2,5 +2,6 @@
 {
     public interface IVector
     {
+        bool IsApproximate(IVector to);
     }
 }
