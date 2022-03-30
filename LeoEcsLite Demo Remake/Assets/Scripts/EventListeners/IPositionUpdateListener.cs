@@ -1,9 +1,9 @@
-﻿using UnityEngine;
+﻿using Other;
 
 namespace EventListeners
 {
     public interface IPositionUpdateListener
     {
-        void OnPositionUpdate(Vector3 value);
+        void OnPositionUpdate(IVector value);
     }
 }

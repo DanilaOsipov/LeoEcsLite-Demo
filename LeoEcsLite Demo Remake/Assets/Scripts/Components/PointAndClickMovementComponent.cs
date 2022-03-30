@@ -8,8 +8,8 @@ namespace Components
     public struct PointAndClickMovementComponent
     {
         public IVector Destination;
+        public bool IsAgentMoving;
         public IVector AgentPosition;
-        public IVector Direction;
         public float Speed;
         public NavMeshAgent NavMeshAgent;
     }

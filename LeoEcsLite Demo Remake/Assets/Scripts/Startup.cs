@@ -26,8 +26,10 @@ public class Startup : MonoBehaviour
     {
         var initSystems = new EcsSystems(ecsWorld)
             .ConvertScene()
+            .Add(new ListenersRegisterSystem())
             .Add(new PlayerInputInitSystem())
-            .Add(new PointAndClickMovementEndMarkerInitSystem());
+            // .Add(new PointAndClickMovementEndMarkerInitSystem())
+            .Inject(new UnityViewService());
         initSystems.Init();
     }
 
@@ -37,6 +39,8 @@ public class Startup : MonoBehaviour
             .DelHere<PlayerStartMovingEvent>()
             .DelHere<PlayerFinishMovingEvent>()
             .Add(new PlayerInputUpdateSystem())
+            .Add(new PointAndClickMovementStartCheckSystem())
+            // .Add(new PointAndClickMovementFinishCheckSystem())
             // .Add(new PlayerAnimationUpdateSystem())
             // .Add(new PointAndClickMovementEndMarkerUpdateSystem())
             .Inject(new UnityInputService());
@@ -49,13 +53,11 @@ public class Startup : MonoBehaviour
             .DelHere<PlayerGroundHitEvent>()
             .DelHere<MouseHitComponent>()
             .Add(new MousePositionCheckSystem())
-            .Add(new PointAndClickMovementStartCheckSystem())
-            .Add(new PointAndClickMovementUpdateSystem())
-            .Add(new PointAndClickMovementFinishCheckSystem())
-            .Add(new PlayerGroundCheckSystem())
-            .Add(new PlayerDoorOperatorCheckSystem())
-            .Add(new DoorOperatorsWorkingSystem())
-            .Add(new DoorsOperatingSystem())
+            .Add(new PointAndClickMovementPositioningSystem())
+            // .Add(new PlayerGroundCheckSystem())
+            // .Add(new PlayerDoorOperatorCheckSystem())
+            // .Add(new DoorOperatorsWorkingSystem())
+            // .Add(new DoorsOperatingSystem())
             .Inject(new UnityTimeService())
             .Inject(new UnityPhysicsService());
         _fixedUpdateSystems.Init();

@@ -11,18 +11,17 @@ namespace Services
             var camera = Camera.main;
             raycastHitInfo = default;
             if (camera == null) return false;
-            var ray = camera.ScreenPointToRay(((UnityVector)position).Value);
+            var ray = camera.ScreenPointToRay(UnityVector.CreateVector3(position));
             if (!Physics.Raycast(ray, out var hitInfo)) return false;
-            var hitTransform = hitInfo.transform;
-            raycastHitInfo.Position = new UnityVector(hitTransform.position); 
-            raycastHitInfo.LayerName = LayerMask.LayerToName(hitTransform.gameObject.layer);
+            raycastHitInfo.Position = new UnityVector(hitInfo.point); 
+            raycastHitInfo.LayerName = LayerMask.LayerToName(hitInfo.transform.gameObject.layer);
             return true;
         }
 
         public bool CastRay(IVector origin, IVector direction, out RaycastHitInfo raycastHitInfo)
         {
             raycastHitInfo = default;
-            if (!Physics.Raycast(((UnityVector)origin).Value, ((UnityVector)direction).Value, 
+            if (!Physics.Raycast(UnityVector.CreateVector3(origin), UnityVector.CreateVector3(direction), 
                 out var hitInfo)) return false;
             var hitTransform = hitInfo.transform;
             raycastHitInfo.Position = new UnityVector(hitTransform.position); 

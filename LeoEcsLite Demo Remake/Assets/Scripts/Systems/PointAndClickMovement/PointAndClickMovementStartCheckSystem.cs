@@ -33,7 +33,8 @@ namespace Systems.PointAndClickMovement
                 foreach (var movementEntity in ecsWorld.Filter<PointAndClickMovementComponent>().End())
                 {
                     ref var movementComponent = ref movementComponentPool.Get(movementEntity);
-                    movementComponent.Destination = hitInfo.Position; 
+                    movementComponent.Destination = hitInfo.Position;
+                    movementComponent.IsAgentMoving = true;
                     ecsWorld.GetPool<PlayerStartMovingEvent>().Add(movementEntity);
                 }
             }

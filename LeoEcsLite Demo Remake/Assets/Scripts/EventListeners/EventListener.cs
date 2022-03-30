@@ -4,6 +4,7 @@ using Voody.UniLeo.Lite;
 
 namespace EventListeners
 {
+    [RequireComponent(typeof(ConvertToEntity))]
     public abstract class EventListener : MonoBehaviour, IEventListener
     {
         private int? _entity;

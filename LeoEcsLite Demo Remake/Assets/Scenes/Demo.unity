@@ -1644,6 +1644,7 @@ GameObject:
   - component: {fileID: 1423659566}
   - component: {fileID: 1423659568}
   - component: {fileID: 1423659569}
+  - component: {fileID: 1423659570}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1701,6 +1702,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
+    IsAgentMoving: 0
+    Speed: 10
     NavMeshAgent: {fileID: 1423659565}
 --- !u!114 &1423659567
 MonoBehaviour:
@@ -1714,7 +1717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 236f59dc59fdd4c8a846a7fc5bb735ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  convertMode: 0
+  convertMode: 2
   customWorld: 
 --- !u!114 &1423659568
 MonoBehaviour:
@@ -1744,6 +1747,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value:
     PlayerAnimator: {fileID: 1428064503}
+--- !u!114 &1423659570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423659563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f11dfe2223941e1a7855dffe1c67f50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &1428064503 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 95879256730774250, guid: 1e8e1924bb442334c9125455634bb567, type: 3}
