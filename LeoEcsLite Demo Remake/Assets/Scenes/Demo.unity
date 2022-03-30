@@ -1642,7 +1642,6 @@ GameObject:
   - component: {fileID: 1423659567}
   - component: {fileID: 1423659566}
   - component: {fileID: 1423659568}
-  - component: {fileID: 1423659569}
   - component: {fileID: 1423659570}
   - component: {fileID: 1423659565}
   - component: {fileID: 1423659571}
@@ -1695,7 +1694,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value:
     Speed: 5
-    StoppingDistance: 0.2
+    StoppingDistance: 0.1
     NavMeshAgent: {fileID: 0}
 --- !u!114 &1423659567
 MonoBehaviour:
@@ -1725,20 +1724,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value:
     PlayerTransform: {fileID: 1423659564}
---- !u!114 &1423659569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1423659563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec110efce2f9471c959bb41fd54f4a87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value:
-    PlayerAnimator: {fileID: 1428064503}
 --- !u!114 &1423659570
 MonoBehaviour:
   m_ObjectHideFlags: 0
