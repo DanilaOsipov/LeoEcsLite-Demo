@@ -54,6 +54,7 @@ public class Startup : MonoBehaviour
             .DelHere<PlayerFinishMovingEvent>()
             // .DelHere<PlayerGroundHitEvent>()
             .Add(new PointAndClickMovementPositioningSystem())
+            .Add(new PointAndClickMovementDirectingSystem())
             .Add(new PointAndClickMovementFinishCheckSystem())
             // .Add(new PlayerGroundCheckSystem())
             // .Add(new PlayerDoorOperatorCheckSystem())
