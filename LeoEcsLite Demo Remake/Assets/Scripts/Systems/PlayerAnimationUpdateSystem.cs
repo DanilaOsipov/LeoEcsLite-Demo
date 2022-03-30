@@ -1,7 +1,6 @@
 ﻿using Components;
 using Events;
 using Leopotam.EcsLite;
-using Other;
 
 namespace Systems
 {
@@ -14,22 +13,22 @@ namespace Systems
             CheckPlayerFinishMovingEvent(ecsWorld);
         }
 
-        private void CheckPlayerMovingEvent<TMovingEvent>(EcsWorld ecsWorld, string animatorParamToSet,
-            bool animatorParamValue) where TMovingEvent : struct
-        {
-            var filter = ecsWorld.Filter<TMovingEvent>().Inc<PlayerAnimatorComponent>().End();
-            var playerAnimatorComponentPool = ecsWorld.GetPool<PlayerAnimatorComponent>();
-            foreach (var entity in filter)
-            {
-                ref var playerAnimatorComponent = ref playerAnimatorComponentPool.Get(entity);
-                playerAnimatorComponent.PlayerAnimator.SetBool(animatorParamToSet, animatorParamValue);
-            }
-        }
-        
         private void CheckPlayerStartMovingEvent(EcsWorld ecsWorld) => CheckPlayerMovingEvent<PlayerStartMovingEvent>
-            (ecsWorld, Constants.PLAYER_RUNNING_ANIMATOR_PARAMETER, true);
+            (ecsWorld, true);
 
         private void CheckPlayerFinishMovingEvent(EcsWorld ecsWorld) => CheckPlayerMovingEvent<PlayerFinishMovingEvent>
-            (ecsWorld, Constants.PLAYER_RUNNING_ANIMATOR_PARAMETER, false);
+            (ecsWorld, false);
+
+        private void CheckPlayerMovingEvent<TMovingEvent>(EcsWorld ecsWorld, bool isMoving) where TMovingEvent : struct
+        {
+            var movingPool = ecsWorld.GetPool<MovingComponent>();
+            foreach (var entity in ecsWorld.Filter<TMovingEvent>().Inc<MovingComponent>().End())
+            {
+                ref var movingComponent = ref movingPool.Get(entity);
+                var movingListener = movingComponent.MovingListener;
+                if (isMoving) movingListener.OnStartMoving();
+                else movingListener.OnStopMoving();
+            }
+        }
     }
 }

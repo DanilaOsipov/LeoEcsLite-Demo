@@ -41,7 +41,7 @@ public class Startup : MonoBehaviour
             .Add(new PlayerInputUpdateSystem())
             .Add(new MousePositionCheckSystem())
             .Add(new PointAndClickMovementStartCheckSystem())
-            // .Add(new PlayerAnimationUpdateSystem())
+            .Add(new PlayerAnimationUpdateSystem())
             // .Add(new PointAndClickMovementEndMarkerUpdateSystem())
             .Inject(new UnityInputService())
             .Inject(new UnityPhysicsService());
