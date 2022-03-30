@@ -18,7 +18,7 @@ namespace Systems.PointAndClickMovement
             foreach (var entity in ecsWorld.Filter<PointAndClickMovementComponent>().Inc<PositionComponent>().End())
             {
                 var movementComponent = movementComponentPool.Get(entity);
-                if (!movementComponent.IsAgentMoving) continue;
+                if (movementComponent.Destination == null) continue;
                 ref var positionComponent = ref positionComponentPool.Get(entity);
                 var destination = movementComponent.Destination;
                 var curPosition = positionComponent.Value;

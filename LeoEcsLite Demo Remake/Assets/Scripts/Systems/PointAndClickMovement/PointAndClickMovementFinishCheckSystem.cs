@@ -10,15 +10,18 @@ namespace Systems.PointAndClickMovement
         {
             var ecsWorld = systems.GetWorld();
             var movementComponentPool = ecsWorld.GetPool<PointAndClickMovementComponent>();
-            foreach (var entity in ecsWorld.Filter<PointAndClickMovementComponent>().End())
+            var positionComponentPool = ecsWorld.GetPool<PositionComponent>();
+            foreach (var entity in ecsWorld.Filter<PointAndClickMovementComponent>().Inc<PositionComponent>().End())
             {
-                var movementComponent = movementComponentPool.Get(entity);
-                var agentPosition = movementComponent.AgentPosition;
+                ref var movementComponent = ref movementComponentPool.Get(entity);
+                var positionComponent = positionComponentPool.Get(entity);
+                var agentPosition = positionComponent.Value;
                 var destination = movementComponent.Destination;
-                if (agentPosition.IsApproximate(to: destination))
-                {
-                    ecsWorld.GetPool<PlayerFinishMovingEvent>().Add(entity);        
-                }
+                var stoppingDistance = movementComponent.StoppingDistance;
+                if (destination == null) continue;
+                if (agentPosition.Distance(to: destination) > stoppingDistance) continue;
+                movementComponent.Destination = null;
+                ecsWorld.GetPool<PlayerFinishMovingEvent>().Add(entity);
             }
         }
     }

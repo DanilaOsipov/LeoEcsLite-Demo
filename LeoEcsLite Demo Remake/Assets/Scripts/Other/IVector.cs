@@ -2,9 +2,10 @@
 {
     public interface IVector
     {
-        public float X { get; }
-        public float Y { get; }
-        public float Z { get; }
+        float X { get; }
+        float Y { get; }
+        float Z { get; }
+        float Distance(IVector to);
         bool IsApproximate(IVector to);
         IVector Subtract(IVector vector);
         IVector Add(IVector vector);

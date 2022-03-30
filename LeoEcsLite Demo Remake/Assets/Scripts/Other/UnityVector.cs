@@ -14,6 +14,8 @@ namespace Other
         
         public UnityVector(Vector3 value) => _value = value;
 
+        public float Distance(IVector to) => Vector3.Distance(CreateVector3(to), _value);
+
         public bool IsApproximate(IVector to) => CreateVector3(to) == _value;
 
         public IVector Subtract(IVector vector) => new UnityVector(_value - CreateVector3(vector));
@@ -24,7 +26,6 @@ namespace Other
 
         public IVector Normalized  => new UnityVector(_value.normalized);
 
-        public static Vector3 CreateVector3(IVector from) => from == null 
-            ? Vector3.zero : new Vector3(from.X, from.Y, from.Z);
+        public static Vector3 CreateVector3(IVector from) => new Vector3(from.X, from.Y, from.Z);
     }
 }

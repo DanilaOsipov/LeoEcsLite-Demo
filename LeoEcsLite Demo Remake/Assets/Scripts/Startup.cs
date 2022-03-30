@@ -37,29 +37,29 @@ public class Startup : MonoBehaviour
     {
         _updateSystems = new EcsSystems(ecsWorld)
             .DelHere<PlayerStartMovingEvent>()
-            .DelHere<PlayerFinishMovingEvent>()
+            .DelHere<MouseHitComponent>()
             .Add(new PlayerInputUpdateSystem())
+            .Add(new MousePositionCheckSystem())
             .Add(new PointAndClickMovementStartCheckSystem())
-            // .Add(new PointAndClickMovementFinishCheckSystem())
             // .Add(new PlayerAnimationUpdateSystem())
             // .Add(new PointAndClickMovementEndMarkerUpdateSystem())
-            .Inject(new UnityInputService());
+            .Inject(new UnityInputService())
+            .Inject(new UnityPhysicsService());
         _updateSystems.Init();
     }
 
     private void SetFixedUpdateSystems(EcsWorld ecsWorld)
     {
         _fixedUpdateSystems = new EcsSystems(ecsWorld)
-            .DelHere<PlayerGroundHitEvent>()
-            .DelHere<MouseHitComponent>()
-            .Add(new MousePositionCheckSystem())
+            .DelHere<PlayerFinishMovingEvent>()
+            // .DelHere<PlayerGroundHitEvent>()
             .Add(new PointAndClickMovementPositioningSystem())
+            .Add(new PointAndClickMovementFinishCheckSystem())
             // .Add(new PlayerGroundCheckSystem())
             // .Add(new PlayerDoorOperatorCheckSystem())
             // .Add(new DoorOperatorsWorkingSystem())
             // .Add(new DoorsOperatingSystem())
-            .Inject(new UnityTimeService())
-            .Inject(new UnityPhysicsService());
+            .Inject(new UnityTimeService());
         _fixedUpdateSystems.Init();
     }
 
