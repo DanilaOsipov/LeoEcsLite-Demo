@@ -52,15 +52,18 @@ public class Startup : MonoBehaviour
     {
         _fixedUpdateSystems = new EcsSystems(ecsWorld)
             .DelHere<PlayerFinishMovingEvent>()
+            .DelHere<ObstacleHitEvent>()
             // .DelHere<PlayerGroundHitEvent>()
             .Add(new PointAndClickMovementPositioningSystem())
             .Add(new PointAndClickMovementDirectingSystem())
+            .Add(new ObstacleCheckSystem())
             .Add(new PointAndClickMovementFinishCheckSystem())
             // .Add(new PlayerGroundCheckSystem())
             // .Add(new PlayerDoorOperatorCheckSystem())
             // .Add(new DoorOperatorsWorkingSystem())
             // .Add(new DoorsOperatingSystem())
-            .Inject(new UnityTimeService());
+            .Inject(new UnityTimeService())
+            .Inject(new UnityPhysicsService());
         _fixedUpdateSystems.Init();
     }
 
