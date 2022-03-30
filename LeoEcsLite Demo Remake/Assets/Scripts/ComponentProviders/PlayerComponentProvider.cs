@@ -5,6 +5,5 @@ namespace ComponentProviders
 {
     public class PlayerComponentProvider : MonoProvider<PlayerComponent>
     {
-        
     }
 }
