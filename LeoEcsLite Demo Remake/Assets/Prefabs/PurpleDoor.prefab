@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _listenedButtonId: 0
-  _pressedReaction:
+  _pressedReactions:
   - {fileID: 8071067701440652537}
 --- !u!114 &8071067701440652537
 MonoBehaviour:

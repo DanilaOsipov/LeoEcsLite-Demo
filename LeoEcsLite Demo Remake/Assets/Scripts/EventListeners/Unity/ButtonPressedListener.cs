@@ -9,7 +9,7 @@ namespace EventListeners.Unity
     public class ButtonPressedListener : EventListener, IButtonPressedListener
     {
         [SerializeField] private int _listenedButtonId;
-        [SerializeField] private List<ButtonPressedReaction> _pressedReaction;
+        [SerializeField] private List<EventReaction> _pressedReactions;
         
         public int ListenedButtonId => _listenedButtonId;
 
@@ -22,6 +22,6 @@ namespace EventListeners.Unity
             listenerComponent.ButtonPressedListener = this;
         }
 
-        public void OnButtonPressed() => _pressedReaction.ForEach(x => x.OnButtonPressed());
+        public void OnButtonPressed() => _pressedReactions.ForEach(x => x.OnEventTriggered());
     }
 }
