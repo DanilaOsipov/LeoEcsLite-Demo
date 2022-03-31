@@ -1200,6 +1200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
+    YOffset: 0.1
     CheckDistance: 0.5
 --- !u!114 &1423659570
 MonoBehaviour:

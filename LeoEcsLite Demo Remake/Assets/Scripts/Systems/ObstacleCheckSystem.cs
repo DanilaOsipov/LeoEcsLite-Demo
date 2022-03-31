@@ -20,9 +20,11 @@ namespace Systems
             foreach (var entity in ecsWorld.Filter<ObstacleCheckerComponent>()
                 .Inc<DirectionComponent>().Inc<PositionComponent>().End())
             {
-                var position = positionPool.Get(entity).Value;
+                var checkerComponent = obstacleCheckerPool.Get(entity);
+                var checkDistance = checkerComponent.CheckDistance;
+                var position = positionPool.Get(entity).Value.Copy;
+                position.Y += checkerComponent.YOffset;
                 var direction = directionPool.Get(entity).Value;
-                var checkDistance = obstacleCheckerPool.Get(entity).CheckDistance;
                 if (!_physicsService.Value.CastRay(position, direction, checkDistance, out var hitInfo)) continue;
                 ref var obstacleHitEvent = ref obstacleHitPool.Add(entity);
                 obstacleHitEvent.HitInfo = hitInfo;

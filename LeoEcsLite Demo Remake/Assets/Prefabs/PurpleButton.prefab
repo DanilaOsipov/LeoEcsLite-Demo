@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6575846822313261559}
   - component: {fileID: 6575846822313261552}
   - component: {fileID: 6575846822313261553}
-  - component: {fileID: 6575846822313261558}
   - component: {fileID: 6575846822313261555}
   m_Layer: 3
   m_Name: Mesh
@@ -83,19 +82,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6575846822313261558
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6575846822313261556}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.0000001, y: 1, z: 1.0000002}
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!95 &6575846822313261555
 Animator:
   serializedVersion: 3
@@ -129,6 +115,7 @@ GameObject:
   - component: {fileID: 6575846822373509492}
   - component: {fileID: 6575846822373509495}
   - component: {fileID: 4481667931071138099}
+  - component: {fileID: 4462514499888619431}
   m_Layer: 3
   m_Name: PurpleButton
   m_TagString: Untagged
@@ -227,3 +214,16 @@ MonoBehaviour:
     DoorOpenningDuration: 0
     DoorOpenningElapsedTime: 0
     DoorStatus: 0
+--- !u!65 &4462514499888619431
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6575846822373509448}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000001, y: 0.1, z: 1.0000002}
+  m_Center: {x: 0, y: 0, z: 0}
