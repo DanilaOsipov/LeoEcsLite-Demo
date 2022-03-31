@@ -23,7 +23,9 @@ namespace Systems
         private void CheckGround(GroundCheckerComponent checkerComponent, PositionComponent positionComponent,
             EcsWorld ecsWorld)
         {
-            if (!_physicsService.Value.CastRay(positionComponent.Value, _vectorService.Value.DownVector,
+            var position = positionComponent.Value.Copy;
+            position.Y += checkerComponent.YOffset;
+            if (!_physicsService.Value.CastRay(position, _vectorService.Value.DownVector, 
                 checkerComponent.CheckDistance, out var hitInfo)) return;
             var hitEventPool = ecsWorld.GetPool<GroundHitEvent>();
             ref var hitEvent = ref hitEventPool.Add(ecsWorld.NewEntity());
