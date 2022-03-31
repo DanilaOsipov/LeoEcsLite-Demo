@@ -2,7 +2,7 @@
 
 namespace Events
 {
-    public struct ObstacleHitEvent
+    public struct GroundHitEvent 
     {
         public RaycastHitInfo HitInfo;
     }

@@ -25,7 +25,7 @@ namespace Systems
                 var checkDistance = obstacleCheckerPool.Get(entity).CheckDistance;
                 if (!_physicsService.Value.CastRay(position, direction, checkDistance, out var hitInfo)) continue;
                 ref var obstacleHitEvent = ref obstacleHitPool.Add(entity);
-                obstacleHitEvent.LayerName = hitInfo.LayerName;
+                obstacleHitEvent.HitInfo = hitInfo;
             }
         }
     }

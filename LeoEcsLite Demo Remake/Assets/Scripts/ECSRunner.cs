@@ -6,6 +6,7 @@ using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Leopotam.EcsLite.ExtendedSystems;
 using Services;
+using Services.Unity;
 using UnityEngine;
 using Voody.UniLeo.Lite;
 
@@ -58,10 +59,11 @@ public class ECSRunner : MonoBehaviour
             .Add(new ObstacleCheckSystem())
             .Add(new PointAndClickMovementFinishCheckSystem())
             .Add(new PointAndClickMovementPositioningSystem())
-            .Add(new PlayerGroundCheckSystem())
+            .Add(new GroundCheckSystem())
             .Add(new PlayerDoorOperatorCheckSystem())
             // .Add(new DoorOperatorsWorkingSystem())
             // .Add(new DoorsOperatingSystem())
+            .Inject(new UnityVectorService())
             .Inject(new UnityTimeService())
             .Inject(new UnityPhysicsService());
         _fixedUpdateSystems.Init();

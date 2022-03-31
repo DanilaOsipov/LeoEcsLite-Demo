@@ -10,8 +10,8 @@ namespace Systems
         public void Run(EcsSystems systems)
         {
             var ecsWorld = systems.GetWorld();
-            var filter = ecsWorld.Filter<PlayerGroundHitEvent>().End();
-            var playerGroundHitEventPool = ecsWorld.GetPool<PlayerGroundHitEvent>();
+            var filter = ecsWorld.Filter<GroundHitEvent>().End();
+            var playerGroundHitEventPool = ecsWorld.GetPool<GroundHitEvent>();
             foreach (var entity in filter)
             {
                 var playerGroundHitEvent = playerGroundHitEventPool.Get(entity);
@@ -19,19 +19,19 @@ namespace Systems
             }
         }
 
-        private void CheckHit(PlayerGroundHitEvent playerGroundHitEvent, EcsWorld ecsWorld)
+        private void CheckHit(GroundHitEvent groundHitEvent, EcsWorld ecsWorld)
         {
             var doorOperatorComponentPool = ecsWorld.GetPool<DoorOperatorComponent>();
-            foreach (var entity in ecsWorld.Filter<DoorOperatorComponent>().End())
-            {
-                ref var doorOperatorComponent = ref doorOperatorComponentPool.Get(entity);
-                var isDoorOperatorHitted 
-                    = playerGroundHitEvent.HitInfo.collider == doorOperatorComponent.DoorOperatorCollider;
-                var isDoorOperatorWaiting = doorOperatorComponent.DoorOperatorStatus == DeviceStatus.Waiting;
-                if (!isDoorOperatorHitted || !isDoorOperatorWaiting) continue;
-                StartDoorOperating(ecsWorld, ref doorOperatorComponent);
-                return;
-            }
+            // foreach (var entity in ecsWorld.Filter<DoorOperatorComponent>().End())
+            // {
+            //     ref var doorOperatorComponent = ref doorOperatorComponentPool.Get(entity);
+            //     var isDoorOperatorHitted 
+            //         = groundHitEvent.HitInfo.collider == doorOperatorComponent.DoorOperatorCollider;
+            //     var isDoorOperatorWaiting = doorOperatorComponent.DoorOperatorStatus == DeviceStatus.Waiting;
+            //     if (!isDoorOperatorHitted || !isDoorOperatorWaiting) continue;
+            //     StartDoorOperating(ecsWorld, ref doorOperatorComponent);
+            //     return;
+            // }
         }
 
         private void StartDoorOperating(EcsWorld ecsWorld, ref DoorOperatorComponent doorOperatorComponent)
