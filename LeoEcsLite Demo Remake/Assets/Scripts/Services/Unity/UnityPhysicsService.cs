@@ -1,8 +1,9 @@
 ﻿using Components;
 using Other;
 using UnityEngine;
+using Voody.UniLeo.Lite;
 
-namespace Services
+namespace Services.Unity
 {
     public class UnityPhysicsService : IPhysicsService
     {
@@ -35,8 +36,11 @@ namespace Services
 
         private void SetHitInfo(out RaycastHitInfo raycastHitInfo, RaycastHit hitInfo)
         {
+            raycastHitInfo = default;
             raycastHitInfo.Position = new UnityVector(hitInfo.point);
             raycastHitInfo.LayerName = LayerMask.LayerToName(hitInfo.transform.gameObject.layer);
+            var convertToEntity = hitInfo.transform.GetComponent<ConvertToEntity>();
+            if (convertToEntity != null) raycastHitInfo.Entity = convertToEntity.TryGetEntity();
         }
     }
 }

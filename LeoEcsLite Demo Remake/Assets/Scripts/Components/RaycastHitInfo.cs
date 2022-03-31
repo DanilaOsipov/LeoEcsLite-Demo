@@ -6,5 +6,6 @@ namespace Components
     {
         public string LayerName;
         public IVector Position;
+        public int? Entity;
     }
 }
