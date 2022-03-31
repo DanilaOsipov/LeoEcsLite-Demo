@@ -4,7 +4,7 @@ using Leopotam.EcsLite;
 
 namespace Systems
 {
-    public class PlayerAnimationUpdateSystem : IEcsRunSystem
+    public class AnimationUpdateSystem : IEcsRunSystem
     {
         public void Run(EcsSystems systems)
         {

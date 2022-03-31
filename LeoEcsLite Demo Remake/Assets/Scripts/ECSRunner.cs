@@ -9,7 +9,7 @@ using Services;
 using UnityEngine;
 using Voody.UniLeo.Lite;
 
-public class Startup : MonoBehaviour
+public class ECSRunner : MonoBehaviour
 {
     private EcsSystems _updateSystems;
     private EcsSystems _fixedUpdateSystems;
@@ -41,7 +41,7 @@ public class Startup : MonoBehaviour
             .Add(new PlayerInputUpdateSystem())
             .Add(new MousePositionCheckSystem())
             .Add(new PointAndClickMovementStartCheckSystem())
-            .Add(new PlayerAnimationUpdateSystem())
+            .Add(new AnimationUpdateSystem())
             // .Add(new PointAndClickMovementEndMarkerUpdateSystem())
             .Inject(new UnityInputService())
             .Inject(new UnityPhysicsService());
@@ -58,8 +58,8 @@ public class Startup : MonoBehaviour
             .Add(new ObstacleCheckSystem())
             .Add(new PointAndClickMovementFinishCheckSystem())
             .Add(new PointAndClickMovementPositioningSystem())
-            // .Add(new PlayerGroundCheckSystem())
-            // .Add(new PlayerDoorOperatorCheckSystem())
+            .Add(new PlayerGroundCheckSystem())
+            .Add(new PlayerDoorOperatorCheckSystem())
             // .Add(new DoorOperatorsWorkingSystem())
             // .Add(new DoorsOperatingSystem())
             .Inject(new UnityTimeService())
