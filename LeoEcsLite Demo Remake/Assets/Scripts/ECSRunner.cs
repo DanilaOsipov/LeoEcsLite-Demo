@@ -43,7 +43,7 @@ public class ECSRunner : MonoBehaviour
             .Add(new MousePositionCheckSystem())
             .Add(new PointAndClickMovementStartCheckSystem())
             .Add(new AnimationUpdateSystem())
-            // .Add(new PointAndClickMovementEndMarkerUpdateSystem())
+            .Add(new PointAndClickMovementEndMarkerUpdateSystem())
             .Inject(new UnityInputService())
             .Inject(new UnityPhysicsService());
         _updateSystems.Init();

@@ -15,34 +15,33 @@ namespace Systems.PointAndClickMovement
 
         private void CheckPlayerStartMovingEvent(EcsWorld ecsWorld)
         {
-            if (ecsWorld.Filter<PlayerStartMovingEvent>().End().GetEntitiesCount() == 0) return;
-            var endMarkerFilter = ecsWorld.Filter<PointAndClickMovementEndMarkerComponent>().End();
-            var endMarkerComponentPool = ecsWorld.GetPool<PointAndClickMovementEndMarkerComponent>();
-            var pointAndClickFilter = ecsWorld.Filter<PointAndClickMovementComponent>().End();
-            var pointAndClickComponentPool = ecsWorld.GetPool<PointAndClickMovementComponent>();
-            foreach (var endMarkerEntity in endMarkerFilter)
+            var pointAndClickPool = ecsWorld.GetPool<PointAndClickMovementComponent>();
+            var positionPool = ecsWorld.GetPool<PositionComponent>();
+            var enablingListenerPool = ecsWorld.GetPool<EnablingListenerComponent>();
+            foreach (var pointAndClickEntity in ecsWorld.Filter<PointAndClickMovementComponent>()
+                .Inc<PlayerStartMovingEvent>().End())
             {
-                foreach (var pointAndClickEntity in pointAndClickFilter)
+                foreach (var endMarkerEntity in ecsWorld.Filter<PointAndClickMovementEndMarkerComponent>()
+                    .Inc<EnablingListenerComponent>().Inc<PositionComponent>().End())
                 {
-                    ref var endMarkerComponent = ref endMarkerComponentPool.Get(endMarkerEntity);
-                    endMarkerComponent.MarkerGameObject.transform.position =
-                        pointAndClickComponentPool.Get(pointAndClickEntity).NavMeshAgent.destination;
-                    endMarkerComponent.MarkerShowParticleSystem.Clear();
-                    endMarkerComponent.MarkerGameObject.SetActive(true);
-                    endMarkerComponent.MarkerShowParticleSystem.Play(true);
+                    var destination = pointAndClickPool.Get(pointAndClickEntity).Destination;
+                    positionPool.Get(endMarkerEntity).UpdateListener.OnPositionUpdate(destination);    
+                    enablingListenerPool.Get(endMarkerEntity).EnablingListener.OnEnabling();
                 }
             }
         }
 
         private void CheckPlayerFinishMovingEvent(EcsWorld ecsWorld)
         {
-            if (ecsWorld.Filter<PlayerFinishMovingEvent>().End().GetEntitiesCount() == 0) return;
-            var endMarkerFilter = ecsWorld.Filter<PointAndClickMovementEndMarkerComponent>().End();
-            var endMarkerComponentPool = ecsWorld.GetPool<PointAndClickMovementEndMarkerComponent>();
-            foreach (var endMarkerEntity in endMarkerFilter)
+            var enablingListenerPool = ecsWorld.GetPool<EnablingListenerComponent>();
+            foreach (var pointAndClickEntity in ecsWorld.Filter<PointAndClickMovementComponent>()
+                .Inc<PlayerFinishMovingEvent>().End())
             {
-                ref var endMarkerComponent = ref endMarkerComponentPool.Get(endMarkerEntity);
-                endMarkerComponent.MarkerGameObject.SetActive(false);
+                foreach (var endMarkerEntity in ecsWorld.Filter<PointAndClickMovementEndMarkerComponent>()
+                    .Inc<EnablingListenerComponent>().End())
+                {
+                    enablingListenerPool.Get(endMarkerEntity).EnablingListener.OnDisabling();
+                }
             }
         }
     }
