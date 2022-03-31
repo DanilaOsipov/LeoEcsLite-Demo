@@ -29,7 +29,7 @@ public class ECSRunner : MonoBehaviour
             .ConvertScene()
             .Add(new ListenersRegisterSystem())
             .Add(new PlayerInputInitSystem())
-            // .Add(new PointAndClickMovementEndMarkerInitSystem())
+            .Add(new PointAndClickMovementEndMarkerInitSystem())
             .Inject(new UnityViewService());
         initSystems.Init();
     }
