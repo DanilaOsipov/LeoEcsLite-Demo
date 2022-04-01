@@ -1,4 +1,5 @@
 ﻿using Components;
+using Events;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Services;
@@ -17,8 +18,8 @@ namespace Systems
             {
                 var mousePosition = playerInputComponentPool.Get(entity).MousePosition;
                 if (!_physicsService.Value.CastRayFromScreenPoint(mousePosition, out var hitInfo)) continue;
-                var mouseHitComponentPool = ecsWorld.GetPool<MouseHitComponent>();
-                ref var mouseHitComponent =  ref mouseHitComponentPool.Add(ecsWorld.NewEntity());
+                var mouseHitPool = ecsWorld.GetPool<MouseHitEvent>();
+                ref var mouseHitComponent =  ref mouseHitPool.Add(ecsWorld.NewEntity());
                 mouseHitComponent.HitInfo = hitInfo;
             }
         }

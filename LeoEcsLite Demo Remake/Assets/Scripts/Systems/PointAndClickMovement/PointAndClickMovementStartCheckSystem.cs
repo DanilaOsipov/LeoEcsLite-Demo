@@ -24,11 +24,11 @@ namespace Systems.PointAndClickMovement
 
         private void CheckMousePosition(EcsWorld ecsWorld)
         {
-            var mouseHitComponentPool = ecsWorld.GetPool<MouseHitComponent>();
+            var mouseHitPool = ecsWorld.GetPool<MouseHitEvent>();
             var movementComponentPool = ecsWorld.GetPool<PointAndClickMovementComponent>();
-            foreach (var mouseHitEntity in ecsWorld.Filter<MouseHitComponent>().End())
+            foreach (var mouseHitEntity in ecsWorld.Filter<MouseHitEvent>().End())
             {
-                var hitInfo = mouseHitComponentPool.Get(mouseHitEntity).HitInfo;
+                var hitInfo = mouseHitPool.Get(mouseHitEntity).HitInfo;
                 if (hitInfo.LayerName != Constants.WALKABLE_LAYER) continue;
                 foreach (var movementEntity in ecsWorld.Filter<PointAndClickMovementComponent>().End())
                 {
