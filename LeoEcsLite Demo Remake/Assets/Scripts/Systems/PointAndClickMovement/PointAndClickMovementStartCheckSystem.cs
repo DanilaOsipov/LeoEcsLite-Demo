@@ -34,7 +34,7 @@ namespace Systems.PointAndClickMovement
                 {
                     ref var movementComponent = ref movementComponentPool.Get(movementEntity);
                     movementComponent.Destination = hitInfo.Position;
-                    ecsWorld.GetPool<PlayerStartMovingEvent>().Add(movementEntity);
+                    ecsWorld.GetPool<StartMovingEvent>().Add(movementEntity);
                 }
             }
         }

@@ -19,7 +19,7 @@ namespace Systems.PointAndClickMovement
             var positionPool = ecsWorld.GetPool<PositionComponent>();
             var enablingListenerPool = ecsWorld.GetPool<EnablingListenerComponent>();
             foreach (var pointAndClickEntity in ecsWorld.Filter<PointAndClickMovementComponent>()
-                .Inc<PlayerStartMovingEvent>().End())
+                .Inc<StartMovingEvent>().End())
             {
                 foreach (var endMarkerEntity in ecsWorld.Filter<PointAndClickMovementEndMarkerComponent>()
                     .Inc<EnablingListenerComponent>().Inc<PositionComponent>().End())
@@ -35,7 +35,7 @@ namespace Systems.PointAndClickMovement
         {
             var enablingListenerPool = ecsWorld.GetPool<EnablingListenerComponent>();
             foreach (var pointAndClickEntity in ecsWorld.Filter<PointAndClickMovementComponent>()
-                .Inc<PlayerFinishMovingEvent>().End())
+                .Inc<FinishMovingEvent>().End())
             {
                 foreach (var endMarkerEntity in ecsWorld.Filter<PointAndClickMovementEndMarkerComponent>()
                     .Inc<EnablingListenerComponent>().End())

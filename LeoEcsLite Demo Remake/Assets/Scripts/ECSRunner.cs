@@ -36,7 +36,7 @@ public class ECSRunner : MonoBehaviour
     private void SetUpdateSystems(EcsWorld ecsWorld)
     {
         _updateSystems = new EcsSystems(ecsWorld)
-            .DelHere<PlayerStartMovingEvent>()
+            .DelHere<StartMovingEvent>()
             .DelHere<MouseHitComponent>()
             .Add(new PlayerInputUpdateSystem())
             .Add(new MousePositionCheckSystem())
@@ -51,7 +51,7 @@ public class ECSRunner : MonoBehaviour
     private void SetFixedUpdateSystems(EcsWorld ecsWorld)
     {
         _fixedUpdateSystems = new EcsSystems(ecsWorld)
-            .DelHere<PlayerFinishMovingEvent>()
+            .DelHere<FinishMovingEvent>()
             .DelHere<ObstacleHitEvent>()
             .DelHere<GroundHitEvent>()
             .Add(new PointAndClickMovementDirectingSystem())

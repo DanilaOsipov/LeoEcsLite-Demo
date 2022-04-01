@@ -24,7 +24,7 @@ namespace Systems.PointAndClickMovement
                 if (!CheckDestination(agentPosition, destination, stoppingDistance)
                     && !CheckObstacle(obstacleHitPool, entity)) continue;
                 movementComponent.Destination = null;
-                ecsWorld.GetPool<PlayerFinishMovingEvent>().Add(entity);
+                ecsWorld.GetPool<FinishMovingEvent>().Add(entity);
             }
         }
 

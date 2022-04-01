@@ -13,10 +13,10 @@ namespace Systems
             CheckPlayerFinishMovingEvent(ecsWorld);
         }
 
-        private void CheckPlayerStartMovingEvent(EcsWorld ecsWorld) => CheckPlayerMovingEvent<PlayerStartMovingEvent>
+        private void CheckPlayerStartMovingEvent(EcsWorld ecsWorld) => CheckPlayerMovingEvent<StartMovingEvent>
             (ecsWorld, true);
 
-        private void CheckPlayerFinishMovingEvent(EcsWorld ecsWorld) => CheckPlayerMovingEvent<PlayerFinishMovingEvent>
+        private void CheckPlayerFinishMovingEvent(EcsWorld ecsWorld) => CheckPlayerMovingEvent<FinishMovingEvent>
             (ecsWorld, false);
 
         private void CheckPlayerMovingEvent<TMovingEvent>(EcsWorld ecsWorld, bool isMoving) where TMovingEvent : struct
