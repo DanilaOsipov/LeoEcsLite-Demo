@@ -13,8 +13,7 @@ namespace EventListeners.Unity
             var entity = TryGetEntity();
             if (entity == null) return;
             var positionPool = ecsWorld.GetPool<PositionComponent>();
-            positionPool.Add(entity.Value);
-            ref var positionComponent = ref positionPool.Get(entity.Value);
+            ref var positionComponent = ref positionPool.Add(entity.Value);
             positionComponent.Value = new UnityVector(transform.position);
             positionComponent.UpdateListener = this;
         }

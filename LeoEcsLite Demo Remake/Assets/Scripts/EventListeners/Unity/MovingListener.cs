@@ -14,8 +14,7 @@ namespace EventListeners.Unity
             var entity = TryGetEntity();
             if (entity == null) return;
             var movingPool = ecsWorld.GetPool<MovingComponent>();
-            movingPool.Add(entity.Value);
-            ref var movingComponent = ref movingPool.Get(entity.Value);
+            ref var movingComponent = ref movingPool.Add(entity.Value);
             movingComponent.MovingListener = this;
         }
 
