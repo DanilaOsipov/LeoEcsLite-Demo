@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Other
+namespace Other.Unity
 {
     public class ButtonPressedReactionAnimation : EventReaction
     {
