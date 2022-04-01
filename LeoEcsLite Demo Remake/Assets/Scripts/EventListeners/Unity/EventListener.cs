@@ -13,4 +13,17 @@ namespace EventListeners.Unity
 
         public abstract void Register(EcsWorld ecsWorld);
     }
+
+    public abstract class EventListener<TComponent> : EventListener where TComponent : struct
+    {
+        public override void Register(EcsWorld ecsWorld)
+        {
+            var entity = TryGetEntity();
+            if (entity == null) return;
+            ref var component = ref ecsWorld.GetPool<TComponent>().Add(entity.Value);
+            InitializeComponent(ref component);
+        }
+
+        protected abstract void InitializeComponent(ref TComponent component);
+    }
 }

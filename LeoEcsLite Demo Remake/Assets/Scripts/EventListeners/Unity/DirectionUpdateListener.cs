@@ -1,21 +1,16 @@
 ﻿using Components;
-using Leopotam.EcsLite;
 using Other;
 
 namespace EventListeners.Unity
 {
-    public class DirectionUpdateListener : EventListener, IDirectionUpdateListener
+    public class DirectionUpdateListener : EventListener<DirectionComponent>, IDirectionUpdateListener
     {
         public void OnDirectionUpdate(IVector value) => transform.forward = UnityVector.CreateVector3(value);
-
-        public override void Register(EcsWorld ecsWorld)
+        
+        protected override void InitializeComponent(ref DirectionComponent component)
         {
-            var entity = TryGetEntity();
-            if (entity == null) return;
-            var directionPool = ecsWorld.GetPool<DirectionComponent>();
-            ref var directionComponent = ref directionPool.Add(entity.Value);
-            directionComponent.Value = new UnityVector(transform.position);
-            directionComponent.UpdateListener = this;
+            component.Value = new UnityVector(transform.position);
+            component.UpdateListener = this;
         }
     }
 }

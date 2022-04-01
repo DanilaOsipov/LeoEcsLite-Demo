@@ -1,21 +1,16 @@
 ﻿using Components;
-using Leopotam.EcsLite;
 using Other;
 
 namespace EventListeners.Unity
 {
-    public class PositionUpdateListener : EventListener, IPositionUpdateListener
+    public class PositionUpdateListener : EventListener<PositionComponent>, IPositionUpdateListener
     {
         public void OnPositionUpdate(IVector value) => transform.position = UnityVector.CreateVector3(value);
-
-        public override void Register(EcsWorld ecsWorld)
+        
+        protected override void InitializeComponent(ref PositionComponent component)
         {
-            var entity = TryGetEntity();
-            if (entity == null) return;
-            var positionPool = ecsWorld.GetPool<PositionComponent>();
-            ref var positionComponent = ref positionPool.Add(entity.Value);
-            positionComponent.Value = new UnityVector(transform.position);
-            positionComponent.UpdateListener = this;
+            component.Value = new UnityVector(transform.position);
+            component.UpdateListener = this;
         }
     }
 }
