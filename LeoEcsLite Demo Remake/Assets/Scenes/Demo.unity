@@ -1104,7 +1104,6 @@ GameObject:
   - component: {fileID: 1423659564}
   - component: {fileID: 1423659567}
   - component: {fileID: 1423659566}
-  - component: {fileID: 1423659568}
   - component: {fileID: 1423659570}
   - component: {fileID: 1423659565}
   - component: {fileID: 1423659571}
@@ -1175,18 +1174,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   convertMode: 2
   customWorld: 
---- !u!114 &1423659568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1423659563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da875cbb85474646962d3d899493a741, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1423659569
 MonoBehaviour:
   m_ObjectHideFlags: 0

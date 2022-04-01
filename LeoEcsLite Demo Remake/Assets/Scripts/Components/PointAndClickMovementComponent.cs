@@ -1,6 +1,5 @@
 ﻿using System;
 using Other;
-using UnityEngine.AI;
 
 namespace Components
 {
@@ -10,6 +9,5 @@ namespace Components
         public IVector Destination;
         public float Speed;
         public float StoppingDistance;
-        public NavMeshAgent NavMeshAgent;
     }
 }
