@@ -1,7 +1,7 @@
 ﻿using Other;
 using UnityEngine;
 
-namespace Services
+namespace Services.Unity
 {
     public class UnityInputService : IInputService
     {

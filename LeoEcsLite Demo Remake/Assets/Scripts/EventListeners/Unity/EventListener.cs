@@ -2,7 +2,7 @@
 using UnityEngine;
 using Voody.UniLeo.Lite;
 
-namespace EventListeners
+namespace EventListeners.Unity
 {
     [RequireComponent(typeof(ConvertToEntity))]
     public abstract class EventListener : MonoBehaviour, IEventListener

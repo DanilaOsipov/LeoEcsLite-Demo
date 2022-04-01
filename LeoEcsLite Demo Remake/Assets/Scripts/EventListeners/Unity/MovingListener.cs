@@ -3,7 +3,7 @@ using Leopotam.EcsLite;
 using Other;
 using UnityEngine;
 
-namespace EventListeners
+namespace EventListeners.Unity
 {
     public class MovingListener : EventListener, IMovingListener
     {

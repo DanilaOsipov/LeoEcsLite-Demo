@@ -2,7 +2,7 @@
 using Leopotam.EcsLite;
 using Other;
 
-namespace EventListeners
+namespace EventListeners.Unity
 {
     public class DirectionUpdateListener : EventListener, IDirectionUpdateListener
     {

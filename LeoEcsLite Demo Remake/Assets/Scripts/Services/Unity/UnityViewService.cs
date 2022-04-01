@@ -1,8 +1,8 @@
-﻿using EventListeners;
+﻿using EventListeners.Unity;
 using Leopotam.EcsLite;
 using UnityEngine;
 
-namespace Services
+namespace Services.Unity
 {
     public class UnityViewService : IViewService
     {
