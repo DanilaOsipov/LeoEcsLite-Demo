@@ -1,9 +1,12 @@
 # LeoEcsLite-Demo-Remake
 
-![gif](https://thumbs.gfycat.com/AggravatingWellgroomedFreshwatereel-mobile.mp4)
+<img src="./demo.gif" width="556" height="308">
 
-<img src="./demo.gif" alt="My Project GIF" width="556" height="308">
+The demo has simple character with point and click movement and some interactable doors.
 
- Remake of my LeoEcsLite Demo (https://github.com/DanilaOsipov/LeoEcsLite-Demo) for Unity
+Made with Unity 2020.3.31f1 using LeoEcsLite (https://github.com/Leopotam/ecslite) with such extensions as:
+- LeoECS Lite DI (https://github.com/Leopotam/ecslite-di);
+- LeoECS Lite Дополнительные системы (https://github.com/Leopotam/ecslite-extendedsystems);
+- UniLeo (https://github.com/voody2506/UniLeo-Lite).
 
-Made with Unity 2020.3.31f1
+Character asset: https://assetstore.unity.com/packages/3d/characters/humanoids/character-pack-free-sample-79870
